@@ -69,7 +69,7 @@ SELECT * FROM Bookshop.cartItems WHERE user_id=1 AND id IN (1,3)
 
 // 주문하기
 // 배송 정보 입력
-INSERT INTO delivery (address, receiver, contact) VALUES ("서울시 중구", "김송아", "010-1234-5678");
+INSERT INTO delivery (address, receiver, contact) VALUES ("서울시 중구", "윤단아", "010-1234-5678");
 const delivery_id = SELECT max(id) FROM delivery;
 
 // 주문 정보 입력
@@ -79,9 +79,9 @@ const order_id = SELECT max(id) FROM orders;
 
 // 주문 상세 목록 입력
 INSERT INTO orderedBook (order_id, book_id, quantity)
-VALUES (order_id, 1, 1);
+VALUES (order_id, 5, 1);
 INSERT INTO orderedBook (order_id, book_id, quantity)
-VALUES (order_id, 3, 2);
+VALUES (order_id, 8, 2);
 
 
 SELECT max(id) FROM Bookshop.orderedBook;

@@ -18,7 +18,7 @@ const addToCart = (req, res) => {
     });
 };
 
-// 장바구니 아이템 목록 조회
+// 장바구니 아이템 목록 조회 / 선택된 장바구니 아이템 목록 조회
 const getCartItems = (req, res) => {
     const { user_id, selected } = req.body; //selected = [1, 3]
 
