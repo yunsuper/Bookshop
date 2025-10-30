@@ -7,6 +7,7 @@ const mariadb = require('mysql2');
         password: "root",
         database: "Bookshop",
         dateStrings: true,
+        multipleStatements: true,
     });
 
 module.exports = connection; 
