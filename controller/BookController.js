@@ -43,6 +43,10 @@ const allBooks = (req, res) => {
         }
         console.log(results);
         if (results.length) { 
+            results[0].map(function (result) {
+                result.pubDate = result.pub_date;
+                delete result.pub_date;
+            })
             allBooksRes.books = results[0]; // 첫번째 SELECT 결과
             let totalCount = results[1][0]["found_rows()"]; //두번째 SELECT 결과 [1]은 [] 배열, [0]은 객체 {} 따라서 totalCount에 속성을 빼주려면 같이 써야함(객체에 접근하기 위해서), DB에서 넘어오는 key 이름 그대로 문자열로 (컬럼 이름이라서)
             let pagination = {};
@@ -92,8 +96,12 @@ const bookDetail = (req, res) => {
             return res.status(StatusCodes.BAD_REQUEST).end();
         }
 
-        if (results[0]) return res.status(StatusCodes.OK).json(results[0]);
-        else return res.status(StatusCodes.NOT_FOUND).end();
+        if (results[0]) {             
+                results[0].pubDate = results[0].pub_date;
+                delete results[0].pub_date;
+            
+            return res.status(StatusCodes.OK).json(results[0]);
+        } else return res.status(StatusCodes.NOT_FOUND).end();
     });
 }
 

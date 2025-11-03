@@ -11,11 +11,11 @@ const addLike = (req, res) => {
     
     if (authorization instanceof jwt.TokenExpiredError) {
         return res.status(StatusCodes.UNAUTHORIZED).json({
-            "message": "로그인 세션이 만료되었습니다. 다시 로그인해주세요."
+            message: "로그인 세션이 만료되었습니다. 다시 로그인해주세요."
         });
     } else if (authorization instanceof jwt.JsonWebTokenError) {
         return res.status(StatusCodes.BAD_REQUEST).json({
-            "message": "잘못된 토큰입니다."
+            message: "잘못된 토큰입니다."
         });
     } else {
         let sql = "INSERT INTO likes (user_id, liked_book_id) VALUES (?, ?);";

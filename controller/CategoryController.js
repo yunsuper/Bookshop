@@ -10,6 +10,11 @@ const allCategory = (req, res) => {
                 return res.status(StatusCodes.BAD_REQUEST).end();
             }
 
+            results = results.map((result) => ({ // 어떤 필드는 유지, 어떤 필드는 바꿀지 명확하게 하기위해 새 객체를 만들어준다
+                id: result.category_id,
+                name: result.category_name,
+            }));
+    
             return res.status(StatusCodes.OK).json(results);
         });
 }

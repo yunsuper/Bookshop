@@ -26,7 +26,10 @@ const join = (req, res) => {
             return res.status(StatusCodes.BAD_REQUEST).end(); // 400
         }
 
-        return res.status(StatusCodes.CREATED).json(results); //201
+        if(results.affectedRows)
+            return res.status(StatusCodes.CREATED).json(results); //201
+        else
+            return res.status(StatusCodes.BAD_REQUEST).end();
     });
 };
 
@@ -58,7 +61,7 @@ const login = (req, res) => {
                 },
                 process.env.PRIVATE_KEY,
                 {
-                    expiresIn: "3m",
+                    expiresIn: "1h",
                     issuer: "songa",
                 }
             );
